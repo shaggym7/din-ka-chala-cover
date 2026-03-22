@@ -35,32 +35,37 @@ export default function App() {
       <div className="w-full max-w-[380px] flex flex-col gap-3 z-10">
         <PlatformLink
           name="YouTube Music"
+          sub="Watch the music video"
           icon={<YouTubeMusicIcon />}
-          iconBg="bg-[#e50000]"
+          gradient="linear-gradient(135deg, #ff1a1a, #8b0000)"
           url="https://music.youtube.com/watch?v=5OYG3WhrgUM&si=IRVsX_la0sYAze9h"
         />
         <PlatformLink
           name="Spotify"
+          sub="Stream on Spotify"
           icon={<SpotifyIcon />}
-          iconBg="bg-[#1db954]"
+          gradient="linear-gradient(135deg, #1db954, #0a6b30)"
           url="https://open.spotify.com/track/5ZbJqvrqTJ0ZoaU7PNvM4v?si=tNVa3SrMTiu3CnkNTyT4Yw"
         />
         <PlatformLink
           name="Amazon Music"
+          sub="Listen on Amazon Music"
           icon={<AmazonMusicIcon />}
-          iconBg="bg-[#0095d5]"
+          gradient="linear-gradient(135deg, #00aaee, #004f7a)"
           url="https://music.amazon.com/tracks/B0GSLRFNHX?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GxSzgYkSPwIPvuz9vmrXAgmUU"
         />
         <PlatformLink
           name="Apple Music"
+          sub="Listen on Apple Music"
           icon={<AppleMusicIcon />}
-          iconBg="bg-[#fa243c]"
+          gradient="linear-gradient(135deg, #ff3b5c, #8b0020)"
           url="https://music.apple.com/us/song/din-ka-chala/1885372567"
         />
         <PlatformLink
           name="Instagram"
+          sub="Use this audio in your Reels"
           icon={<InstagramIcon />}
-          iconBg="bg-gradient-to-br from-[#9b2cba] via-[#ea3c4b] to-[#f48a3e]"
+          gradient="linear-gradient(135deg, #9b2cba, #ea3c4b, #f48a3e)"
           url="https://www.instagram.com/reels/audio/1615446199766033?igsh=MWhvZXhzcGhvbTA4Nw%3D%3D"
         />
       </div>
@@ -73,28 +78,38 @@ export default function App() {
   );
 }
 
-function PlatformLink({ name, icon, iconBg, url }: { name: string; icon: ReactNode; iconBg: string; url: string }) {
+function PlatformLink({ name, sub, icon, gradient, url }: {
+  name: string; sub: string; icon: ReactNode; gradient: string; url: string;
+}) {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      style={{ background: gradient }}
       className="group relative flex items-center justify-between px-4 py-3.5 rounded-2xl
-                 bg-white/[0.05] backdrop-blur-md border border-white/[0.08]
-                 hover:bg-white/[0.09] hover:border-white/[0.14]
-                 transition duration-200 hover:scale-[1.02] active:scale-[0.98]
-                 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07090f]"
+                 border border-white/15
+                 transition duration-200 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98]
+                 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07090f]"
     >
       {/* Glossy top highlight */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+      {/* Glossy upper sheen */}
+      <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent pointer-events-none" />
 
       <div className="flex items-center gap-3.5">
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg} flex-shrink-0`}>
+        <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 bg-black/25 border border-white/10">
           {icon}
         </div>
-        <span className="font-medium text-[15px] text-white/85 tracking-wide">{name}</span>
+        <div className="flex flex-col gap-0.5">
+          <span className="font-semibold text-[15px] text-white leading-tight">{name}</span>
+          <span className="text-[11px] text-white/60 leading-tight">{sub}</span>
+        </div>
       </div>
-      <ExternalLink size={14} className="text-white/25 group-hover:text-white/55 transition-colors flex-shrink-0" />
+
+      <div className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center bg-black/20 border border-white/10">
+        <ExternalLink size={13} className="text-white/70 group-hover:text-white transition-colors" />
+      </div>
     </a>
   );
 }
