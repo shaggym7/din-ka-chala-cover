@@ -67,7 +67,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="mt-14 mb-4 text-white/20 text-xs tracking-widest uppercase z-10">
-        ©️ 2026 LocalsVocalsMusic
+        © 2026 LocalsVocalsMusic
       </footer>
     </div>
   );
@@ -89,7 +89,7 @@ function PlatformLink({ name, icon, iconBg, url }: { name: string; icon: ReactNo
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="flex items-center gap-3.5">
-        <div className={⁠ w-10 h-10 rounded-xl flex items-center justify-center ${iconBg} flex-shrink-0 ⁠}>
+        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg} flex-shrink-0`}>
           {icon}
         </div>
         <span className="font-medium text-[15px] text-white/85 tracking-wide">{name}</span>
